@@ -45,6 +45,6 @@ elif select == 4:
     logging.info("Dividing {} and {}".format(number_1, number_2))
     print('Result {}'.format(divide(number_1, number_2)))
 else:
-    print("Invalid input")
+    print("Invalid input!")
 
 
