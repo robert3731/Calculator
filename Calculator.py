@@ -1,20 +1,21 @@
 import logging
+from math import prod
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
 
-def add(num1, num2):
-    return num1 + num2
+def add(numbers: float) -> float:
+    return sum(numbers)
 
 
-def subtract(num1, num2):
+def subtract(num1, num2: float) -> float:
     return num1 - num2
 
 
-def multiply(num1, num2):
-    return num1 * num2
+def multiply(numbers: float) -> float:
+    return prod(numbers)
 
 
-def divide(num1, num2):
+def divide(num1, num2: float) -> float:
     return num1 / num2
 
 
@@ -26,25 +27,29 @@ Select operations form:
 4. Divide
 '''))
 
-number_1 = float(input("Enter first number: "))
-number_2 = float(input("Enter second number: "))
 
 if select == 1:
-    logging.info("Adding {} and {}".format(number_1, number_2))
-    print('Result {}'.format(add(number_1, number_2)))
+    numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    logging.info("Adding {}".format(numbers_list))
+    print('Result {}'.format(add(numbers_list)))
 
 elif select == 2:
+    number_1 = float(input("Enter first number: "))
+    number_2 = float(input("Enter second number: "))
     logging.info("Subtracting {} and {}".format(number_1, number_2))
     print('Result {}'.format(subtract(number_1, number_2)))
 
 elif select == 3:
-    logging.info("Multiplying {} and {}".format(number_1, number_2))
-    print('Result {}'.format(multiply(number_1, number_2)))
+    numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    logging.info("Multiplying {}".format(numbers_list))
+    print('Result {}'.format(multiply(numbers_list)))
 
 elif select == 4:
+    number_1 = float(input("Enter first number: "))
+    number_2 = float(input("Enter second number: "))
     logging.info("Dividing {} and {}".format(number_1, number_2))
     print('Result {}'.format(divide(number_1, number_2)))
 else:
-    print("Invalid input!")
+    print("Invalid input")
 
 
