@@ -1,9 +1,10 @@
 import logging
 from math import prod
+
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
 
-def add(numbers: float) -> float:
+def add(numbers: list) -> float:
     return sum(numbers)
 
 
@@ -11,7 +12,7 @@ def subtract(num1, num2: float) -> float:
     return num1 - num2
 
 
-def multiply(numbers: float) -> float:
+def multiply(numbers: list) -> float:
     return prod(numbers)
 
 
@@ -51,5 +52,3 @@ elif select == 4:
     print('Result {}'.format(divide(number_1, number_2)))
 else:
     print("Invalid input")
-
-
