@@ -30,9 +30,14 @@ Select operations form:
 
 
 if select == 1:
-    numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-    logging.info("Adding {}".format(numbers_list))
-    print('Result {}'.format(add(numbers_list)))
+    try:
+        numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    except ValueError:
+        print("Entered values cannot be added. Please enter correct values.")
+        numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    finally:
+        logging.info("Adding {}".format(numbers_list))
+        print('Result {}'.format(add(numbers_list)))
 
 elif select == 2:
     number_1 = float(input("Enter first number: "))
@@ -41,9 +46,14 @@ elif select == 2:
     print('Result {}'.format(subtract(number_1, number_2)))
 
 elif select == 3:
-    numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-    logging.info("Multiplying {}".format(numbers_list))
-    print('Result {}'.format(multiply(numbers_list)))
+    try:
+        numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    except ValueError:
+        print("Entered values cannot be multiplied. Please enter correct values.")
+        numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
+    finally:
+        logging.info("Multiplying {}".format(numbers_list))
+        print('Result {}'.format(multiply(numbers_list)))
 
 elif select == 4:
     number_1 = float(input("Enter first number: "))
