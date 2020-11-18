@@ -42,10 +42,16 @@ def menu():
                 print('Result {}'.format(add(numbers_list)))
 
         elif select == 2:
-            number_1 = float(input("Enter first number: "))
-            number_2 = float(input("Enter second number: "))
-            logging.info("Subtracting {} and {}".format(number_1, number_2))
-            print('Result {}'.format(subtract(number_1, number_2)))
+            try:
+                number_1 = float(input("Enter first number: "))
+                number_2 = float(input("Enter second number: "))
+            except ValueError:
+                print("Entered values cannot be subtracted. Please enter correct values.")
+                number_1 = float(input("Enter first number: "))
+                number_2 = float(input("Enter second number: "))
+            finally:
+                logging.info("Subtracting {} and {}".format(number_1, number_2))
+                print('Result {}'.format(subtract(number_1, number_2)))
 
         elif select == 3:
             try:
@@ -58,10 +64,16 @@ def menu():
                 print('Result {}'.format(multiply(numbers_list)))
 
         elif select == 4:
-            number_1 = float(input("Enter first number: "))
-            number_2 = float(input("Enter second number: "))
-            logging.info("Dividing {} and {}".format(number_1, number_2))
-            print('Result {}'.format(divide(number_1, number_2)))
+            try:
+                number_1 = float(input("Enter first number: "))
+                number_2 = float(input("Enter second number: "))
+            except ValueError:
+                print("Entered values cannot be subtracted. Please enter correct values.")
+                number_1 = float(input("Enter first number: "))
+                number_2 = float(input("Enter second number: "))
+            finally:
+                logging.info("Dividing {} and {}".format(number_1, number_2))
+                print('Result {}'.format(divide(number_1, number_2)))
 
         elif select == 5:
             return False
