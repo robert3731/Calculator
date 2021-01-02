@@ -1,5 +1,5 @@
 import pytest
-from Calculator import add, subtract, multiply, divide
+from Calculator import add, sub, multiply, divide
 
 
 def test_raises_exception_on_string_arguments():
@@ -12,7 +12,7 @@ def test_add():
 
 
 def test_subtract():
-    assert subtract(7, 5) == 2
+    assert sub(7, 5) == 2
 
 
 def test_multiply():

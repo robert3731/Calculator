@@ -4,83 +4,60 @@ from math import prod
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
 
-def add(numbers: list) -> float:
-    return sum(numbers)
+def add(a, b, *args):
+    logging.info("Dodawanie {} {} {}".format(a, b, args))
+    return a + b + sum(args)
 
 
-def subtract(num1, num2: float) -> float:
-    return num1 - num2
+def sub(a, b, *args):
+    logging.info("Odejmowanie {} {} {}".format(a, b, args))
+    return a - b
 
 
-def multiply(numbers: list) -> float:
-    return prod(numbers)
+def multiply(a, b, *args):
+    logging.info("Mnożenie {} {} {}".format(a, b, args))
+    return a * b * prod(args)
 
 
-def divide(num1, num2: float) -> float:
-    return num1 / num2
+def divide(a, b, *args):
+    logging.info("Dzielenie {} {} {}".format(a, b, args))
+    if b == 0:
+        return "Nie można dzielić przez 0"
+    return a / b
 
 
-def menu():
-    while True:
-        select = int(input('''
-        Select operations form: 
-        1. Add 
-        2. Subtract
-        3. Multiply
-        4. Divide
-        5. Exit
-        '''))
+def get_data():
+    a = float(input('Podaj wartość a: ').replace(',', '.'))
+    b = float(input('Podaj wartość b: ').replace(',', '.'))
+    c = list(input("Naciśnij Enter lub podaj inne wartości (np. 1, 2.3, 13): ").split(','))
+    if c[0] == '':
+        c.clear()
+        args = c.copy()
+    else:
+        args = [float(arg) for arg in c]
 
-        if select == 1:
-            try:
-                numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-            except ValueError:
-                print("Entered values cannot be added. Please enter correct values.")
-                numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-            finally:
-                logging.info("Adding {}".format(numbers_list))
-                print('Result {}'.format(add(numbers_list)))
+    return a, b, args
 
-        elif select == 2:
-            try:
-                number_1 = float(input("Enter first number: "))
-                number_2 = float(input("Enter second number: "))
-            except ValueError:
-                print("Entered values cannot be subtracted. Please enter correct values.")
-                number_1 = float(input("Enter first number: "))
-                number_2 = float(input("Enter second number: "))
-            finally:
-                logging.info("Subtracting {} and {}".format(number_1, number_2))
-                print('Result {}'.format(subtract(number_1, number_2)))
 
-        elif select == 3:
-            try:
-                numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-            except ValueError:
-                print("Entered values cannot be multiplied. Please enter correct values.")
-                numbers_list = list(map(float, input("Enter a multiple value(ex. 1 2.3 13): ").split()))
-            finally:
-                logging.info("Multiplying {}".format(numbers_list))
-                print('Result {}'.format(multiply(numbers_list)))
+operations = {
+    "1": add,
+    "2": sub,
+    "3": multiply,
+    "4": divide
+}
 
-        elif select == 4:
-            try:
-                number_1 = float(input("Enter first number: "))
-                number_2 = float(input("Enter second number: "))
-            except ValueError:
-                print("Entered values cannot be subtracted. Please enter correct values.")
-                number_1 = float(input("Enter first number: "))
-                number_2 = float(input("Enter second number: "))
-            finally:
-                logging.info("Dividing {} and {}".format(number_1, number_2))
-                print('Result {}'.format(divide(number_1, number_2)))
 
-        elif select == 5:
-            return False
+def main():
+    op = input('Wybierz działanie, posługując się odpowiednią liczbą:\n'
+               '1.Dodawanie\n'
+               '2.Odejmowanie\n'
+               '3.Mnożenie\n'
+               '4.Dzielenie\n')
+    a, b, args = get_data()
 
-        else:
-            print("Invalid input")
+    result = operations[op](a, b, *args)
+    print('Wynik działania to: {}'.format(result))
 
 
 if __name__ == '__main__':
-    menu()
+    main()
